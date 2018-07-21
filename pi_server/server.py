@@ -24,7 +24,7 @@ class server_:
         other_thread.daemon = True
         other_thread.start()
         self.controller.ledwrapper.set_green(False)
-        self.controller.LedWrapper.set_red(False)
+        self.controller.ledwrapper.set_red(False)
 
     def button(self, trigger):
         while(not trigger.is_set()):
@@ -32,7 +32,7 @@ class server_:
         print("button pressed")
         # if(not self.controller.led_status_ok):
         self.controller.led_status_ok = True
-        self.controller.LedWrapper.set_red(False)
+        self.controller.ledwrapper.set_red(False)
         self.controller.ledwrapper.set_green(True)
         trigger.clear()
 
