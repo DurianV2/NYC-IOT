@@ -4,7 +4,7 @@ from request_handler import request_handler_
 
 class background_sync_(object):
 
-    def __init__(self, interval=1, sync_url=None):
+    def __init__(self, interval=1, sync_url="http://honeyimhome-210903.appspot.com/sync"):
         self.is_home = False
         self.first_warning = False
         self.interval = interval
@@ -21,6 +21,7 @@ class background_sync_(object):
         thread.start()                                  # Start the execution
 
     def run(self, stop_event):
+        print("Starting run")
         start_time = time.time()
         while not stop_event.is_set():
             if(time.time() - start_time >= 1 and self.sync_url is not None):
