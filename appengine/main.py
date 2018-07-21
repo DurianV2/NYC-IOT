@@ -36,7 +36,6 @@ def updateform():
     return render_template('updateform.html')
 # [END update]
 
-<<<<<<< HEAD
 # [START submitted]
 @app.route('/submitted', methods=['POST'])
 def submitted_form():
@@ -44,8 +43,6 @@ def submitted_form():
     email = request.form['email']
     site = request.form['site_url']
     comments = request.form['comments'))))))))))))]
-=======
->>>>>>> 5426c398f14ea09275dae7b0e91697849dc4f73d
 
 # [START submittedleaving]
 @app.route('/submittedleaving', methods=['POST'])
