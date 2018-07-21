@@ -17,12 +17,23 @@ import logging
 
 # [START imports]
 from flask import Flask, render_template, request
+from dateutil import parser
+from json import dumps
 # [END imports]
 
 # [START create_app]
 app = Flask(__name__)
 # [END create_app]
 
+# [Start app variables]
+estimated_date_time_of_arrival = None
+owner_is_home = False
+send_first_alert = False
+
+# [End app variables]
+
+def update_eta(eta):
+    estimated_data_time_of_arrival = parser.parse(eta)
 
 # [START leaving]
 @app.route('/leaving')
@@ -36,8 +47,6 @@ def updateform():
     return render_template('updateform.html')
 # [END update]
 
-# [START submitted]
-@app.route('/submitted', methods=['POST'])
 def submitted_form():
     name = request.form['name']
     email = request.form['email']
@@ -53,7 +62,7 @@ def submitted_leaving():
     phone3 = request.form['phone3']
     phone4 = request.form['phone4']
     phone5 = request.form['phone5']
-    # Set up the timer and use this variables.
+    update_eta(ETA)
 
     # [END submittedleaving]
     # [START render_template]
@@ -64,18 +73,21 @@ def submitted_leaving():
 @app.route('/submittedupdate', methods=['POST'])
 def submitted_update():
     ETA = request.form['ETA']
-    # Update the ETA variable.
-    # Listen for the notcominghome button.
-    
+    update_eta(ETA)
+    # TODO(innocent) Add logic to check the status of this button after it has been created.
+
     # [END submitted]
     # [START render_template]
     return render_template('submitted_form.html')
-# [END render_template]
+    # [END render_template]
 
-@app.route('/sync')
+@app.route('/sync' methods=['GET'])
 def sync():
-   # Return the right json with booleans.
-    return 'JSON with two attributes, 1stcrisis and arrived'
+    sync_message = {
+        'is_home': owner_is_home,
+        'send_alert': send_first_alert
+    }
+    return dumps(sync_message)
 
 @app.errorhandler(500)
 def server_error(e):
