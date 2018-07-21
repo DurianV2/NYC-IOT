@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Leaving Home</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  </head>
+  <body>
+    <div id="container">
+      <div class="pagetitle">
+
+      </div>
+      <div class="logo"> </div>
+      <div id="main">
+        <form method="post" action="{{ url_for('submitted_leaving') }}">
+          <h2 class="insideTitle">Going out?</h2>
+          <div>
+            <div class="label-box">
+              <p>I'll be back by:</p>
+            </div>
+            <input type="time" name="ETA" required>
+          </div>
+          <div>
+            <input type="text" name="phone1" required>
+            <div class="label-box">
+              <label>Emergency Contact: (US phone number)</label>
+            </div>
+          </div>
+          <input type="submit" class="btn" value="Set Values" />
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
