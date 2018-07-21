@@ -26,13 +26,19 @@ app = Flask(__name__)
 
 # [Start app variables]
 estimated_date_time_of_arrival = None
-owner_is_home = False
+owner_is_home = True
 send_first_alert = False
 
 # [End app variables]
 
 def update_eta(eta):
     estimated_data_time_of_arrival = eta
+
+# [START home]
+@app.route('/')
+def home():
+    return render_template('home.html', owner_is_home=owner_is_home)
+# [END home]
 
 # [START leaving]
 @app.route('/leaving')
@@ -52,7 +58,7 @@ def submitted_leaving():
     ETA = request.form['ETA']
     phone1 = request.form['phone1']
     # Set up the timer and use this variables.
-
+    owner_is_home = False
     # [END submittedleaving]
     # [START render_template]
     return render_template('submitted_form.html')
