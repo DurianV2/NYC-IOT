@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Info received</title>
+    <link rel="stylesheet" href="/static/home.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  </head>
+  <body>
+    <div id="container">
+      <div class="pagetitle">
+
+      </div>
+      <div id="main">
+        <img id="logo" src="https://raw.githubusercontent.com/DurianV2/NYC-IOT/develop/appengine/res/logo.png">
+        {% if owner_is_home %}
+        <form action="{{ url_for('leavingform') }}">
+          <input type="submit" value="Going Out?" />
+        </form>
+        {% else %}
+        <form action="{{ url_for('updateform') }}">
+          <input type="submit" value="Update"/>
+        </form>
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>

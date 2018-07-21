@@ -10,7 +10,6 @@
       <div class="pagetitle">
 
       </div>
-      <div class="logo"> </div>
       <div id="main">
         <form method="post" action="{{ url_for('submitted_leaving') }}">
           <h2 class="insideTitle">Going out?</h2>
@@ -21,7 +20,7 @@
             <input type="time" name="ETA" required>
           </div>
           <div>
-            <input type="text" name="phone1" required>
+            <input type="tel" name="phone1" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
             <div class="label-box">
               <label>Emergency Contact: (US phone number)</label>
             </div>
