@@ -26,6 +26,7 @@ class server_:
 
     def button(self, trigger):
         while(not trigger.is_set()):
+            continue
         print("button pressed")
         # if(not self.controller.led_status_ok):
         self.controller.led_status_ok = True
