@@ -19,14 +19,20 @@ class server_:
         self.thread = thread
         thread.daemon = True                            # Daemonize thread
         thread.start()                                  # Start the execution
+        other_thread = threading.Thread(target=button, args=())
+        self.other_thread = other_thread
+        other_thread.daemon = True
+        other_thread.start()
+
+    def button(self):
+        if(self.event.is_set()):
+            if(not self.controller.led_status_ok):
+                self.controller.led_status_ok = True
+                self.controller.ledwrapper.set_green(True)
+                self.event.clear()
 
     def main(self):
         while(True):
-            if(self.event.is_set()):
-                if(not self.controller.led_status_ok):
-                    self.controller.led_status_ok = True
-                    self.controller.ledwrapper.set_green(True)
-                    self.event.clear()
             if(not self.information_handler.is_home and not self.has_background_caller):
                 background_caller = background_sync_()
                 self.has_background_caller = True
@@ -42,10 +48,9 @@ class server_:
                         self.controller.oled_set = False
                         if(not self.controller.led_status_ok):
                             self.controller.ledwrapper.set_green(True)
-            if(self.information_handler.first_warning and not self.controller.oled_set):
+            if(self.information_handler.first_warning):
                 controller.oledwrapper.display_text("Where are you?")
                 self.controller.oled_set = True
-                break
         if(self.has_background_caller):
             background_caller.end()
 
