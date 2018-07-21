@@ -30,7 +30,7 @@ class server_:
         first_warning_thread.start()
 
         self.controller.ledwrapper.set_green(False)
-        self.controller.LedWrapper.set_red(False)
+        self.controller.ledwrapper.set_red(False)
 
     def button(self, trigger):
         while(not trigger.is_set()):
