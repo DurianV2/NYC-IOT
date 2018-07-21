@@ -13,8 +13,9 @@ class server_:
         self.controller = controller_()
         self.sync_time = time.time()
         self.has_background_caller = False
-        self.event = threading.Event()
-        thread = threading.Thread(target=self.controller.buttonwrapper.wait_for_press, args=(self.event,))
+        trigger = threading.Event()
+        self.event = trigger
+        thread = threading.Thread(target=self.controller.buttonwrapper.wait_for_press, args=(trigger,))
         self.thread = thread
         thread.daemon = True                            # Daemonize thread
         thread.start()                                  # Start the execution
@@ -24,6 +25,7 @@ class server_:
             if(self.event.is_set()):
                 if(not self.controller.led_status_ok):
                     self.controller.led_status_ok = True
+                    self.controller.ledwrapper.set_green(True)
                     self.event.clear()
             if(not self.information_handler.is_home and not self.has_background_caller):
                 background_caller = background_sync_()

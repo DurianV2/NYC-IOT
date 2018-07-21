@@ -16,5 +16,5 @@ class ButtonWrapper:
         while True:
             input_state = GPIO.input(self.pin)
             if input_state == False:
-                thread.event.set()
+                thread.set()
                 break
