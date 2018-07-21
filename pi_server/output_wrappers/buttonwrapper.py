@@ -18,5 +18,5 @@ class ButtonWrapper:
             if input_state == False:
                 if trigger is not None:
                     trigger.set()
-                    break
-                break
+                #     break
+                # break
