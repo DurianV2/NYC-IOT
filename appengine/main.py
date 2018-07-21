@@ -31,31 +31,16 @@ def leavingform():
 # [END leaving]
 
 # [START update]
-@app.route('/update')
+@app.route('/update', methods=['POST'])
 def updateform():
     return render_template('updateform.html')
 # [END update]
-
-<<<<<<< HEAD
-# [START submitted]
-@app.route('/submitted', methods=['POST'])
-def submitted_form():
-    name = request.form['name']
-    email = request.form['email']
-    site = request.form['site_url']
-    comments = request.form['comments'))))))))))))]
-=======
->>>>>>> 5426c398f14ea09275dae7b0e91697849dc4f73d
 
 # [START submittedleaving]
 @app.route('/submittedleaving', methods=['POST'])
 def submitted_leaving():
     ETA = request.form['ETA']
     phone1 = request.form['phone1']
-    phone2 = request.form['phone2']
-    phone3 = request.form['phone3']
-    phone4 = request.form['phone4']
-    phone5 = request.form['phone5']
     # Set up the timer and use this variables.
 
     # [END submittedleaving]
@@ -63,14 +48,14 @@ def submitted_leaving():
     return render_template('submitted_form.html');
     # [END render_template]
 
-# [START submitted]
+# [START submittedupdate]
 @app.route('/submittedupdate', methods=['POST'])
 def submitted_update():
     ETA = request.form['ETA']
     # Update the ETA variable.
     # Listen for the notcominghome button.
-    
-    # [END submitted]
+
+    # [END submittedupdate]
     # [START render_template]
     return render_template('submitted_form.html');
 # [END render_template]

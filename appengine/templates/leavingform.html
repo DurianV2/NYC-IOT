@@ -1,34 +1,32 @@
+<!DOCTYPE html>
 <html>
   <head>
     <title>Leaving Home</title>
-   <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
   </head>
   <body>
     <div id="container">
       <div class="pagetitle">
-        <h1>Going out?</h1>
+
       </div>
+      <div class="logo"> </div>
       <div id="main">
-        <form method="post" action="{{ url_for('submitted_update') }}">
-          <label for="ETA">I'll be home before:</label>
-          <input type="time" name="ETA"><br />
-
-          <label for="phone1">Emergency Contact 1:</label>
-          <input type="tel" name="phone1"><br />
-
-          <label for="phone2">Emergency Contact 2:</label>
-          <input type="tel" name="phone2"><br />
-
-          <label for="phone3">Emergency Contact 3:</label>
-          <input type="tel" name="phone3"><br />
-
-          <label for="phone4">Emergency Contact 4:</label>
-          <input type="tel" name="phone4"><br />
-
-          <label for="phone5">Emergency Contact 5:</label>
-          <input type="tel" name="phone5"><br />
-
-          <input type="submit">
+        <form method="post" action="{{ url_for('submitted_leaving') }}">
+          <h2 class="insideTitle">Going out?</h2>
+          <div>
+            <div class="label-box">
+              <p>I'll be back by:</p>
+            </div>
+            <input type="time" name="ETA" required>
+          </div>
+          <div>
+            <input type="text" name="phone1" required>
+            <div class="label-box">
+              <label>Emergency Contact: (US phone number)</label>
+            </div>
+          </div>
+          <input type="submit" class="btn" value="Set Values" />
         </form>
       </div>
     </div>
