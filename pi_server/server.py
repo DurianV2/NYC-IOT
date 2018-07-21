@@ -11,7 +11,6 @@ class server_:
         self.information_handler = information_handler_()
         self.request_handler = request_handler_()
         self.controller = controller_()
-        self.background_sync = background_sync_()
         self.sync_time = time.time()
         self.has_background_caller = False
         trigger = threading.Event()
@@ -24,13 +23,8 @@ class server_:
         self.other_thread = other_thread
         other_thread.daemon = True
         other_thread.start()
-        warning_trigger = threading.Event()
-        first_warning_thread = threading.Thread(target=self.first_warning, args=(warning_trigger, ))
-        first_warning_thread.daemon = True
-        first_warning_thread.start()
-
         self.controller.ledwrapper.set_green(False)
-        self.controller.ledwrapper.set_red(False)
+        self.controller.LedWrapper.set_red(False)
 
     def button(self, trigger):
         while(not trigger.is_set()):
@@ -42,35 +36,26 @@ class server_:
         self.controller.ledwrapper.set_green(True)
         trigger.clear()
 
-    def first_warning(self, trigger):
-        while(not trigger.is_set()):
-            continue
-        print("First warning received, preparing")
-        controller.oledwrapper.display_text("Where are you?")
-        self.controller.oled_set = True
-        self.controller.ledwrapper.set_green(False)
-        self.controller.ledwrapper.set_red(False)
-        self.contoller.ledwrapper.set_red(True)
-
-
     def main(self):
         while(True):
             if(not self.information_handler.is_home and not self.has_background_caller):
-                self.background_sync.start_threads()
+                background_caller = background_sync_()
                 self.has_background_caller = True
                 if(self.controller.led_status_ok):
                     self.controller.ledwrapper.set_red(True)
             else:
                 if(self.has_background_caller):
-                    if(self.background_sync.is_home):
-                        self.background_sync.end()
+                    if(background_caller.is_home):
+                        background_caller.end()
                         self.has_background_caller = False
-                        self.controller.oledwrapper.clear_screen()
+                        controller.oledwrapper.clear_screen()
                         self.information_handler.reset()
                         self.controller.oled_set = False
                         if(not self.controller.led_status_ok):
-                            self.controller.ledwrapper.set_red(True)
                             self.controller.ledwrapper.set_green(True)
+            if(self.information_handler.first_warning):
+                controller.oledwrapper.display_text("Where are you?")
+                self.controller.oled_set = True
         if(self.has_background_caller):
             background_caller.end()
 

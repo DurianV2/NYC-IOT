@@ -4,7 +4,7 @@ from request_handler import request_handler_
 
 class background_sync_(object):
 
-    def __init__(self, interval=1, sync_url="http://honeyimhome-210903.appspot.com/sync"):
+    def __init__(self, interval=1, sync_url=None):
         self.is_home = False
         self.first_warning = False
         self.interval = interval
@@ -13,15 +13,12 @@ class background_sync_(object):
         self.sync_url = sync_url
         stop_event = threading.Event()
         self.stop_event = stop_event
-
-    def start_threads(self):
-        thread = threading.Thread(target=self.run, args=(self.stop_event,))
+        thread = threading.Thread(target=self.run, args=(stop_event,))
         self.thread = thread
         thread.daemon = True                            # Daemonize thread
         thread.start()                                  # Start the execution
 
     def run(self, stop_event):
-        print("Starting run")
         start_time = time.time()
         while not stop_event.is_set():
             if(time.time() - start_time >= 1 and self.sync_url is not None):
@@ -34,6 +31,7 @@ class background_sync_(object):
                 # self.first_warning = False
                 if(self.is_home and not self.first_warning):
                     self.end()
+                    return json_
                 start_time = time.time()
             # else:
             #     # print("something is none")
