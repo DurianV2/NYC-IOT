@@ -17,7 +17,6 @@ import logging
 
 # [START imports]
 from flask import Flask, render_template, request
-from dateutil import parser
 from json import dumps
 # [END imports]
 
@@ -33,7 +32,7 @@ send_first_alert = False
 # [End app variables]
 
 def update_eta(eta):
-    estimated_data_time_of_arrival = parser.parse(eta)
+    estimated_data_time_of_arrival = eta
 
 # [START leaving]
 @app.route('/leaving')
@@ -71,7 +70,7 @@ def submitted_update():
     return render_template('submitted_form.html')
     # [END render_template]
 
-@app.route('/sync' methods=['GET'])
+@app.route('/sync', methods=['GET'])
 def sync():
     sync_message = {
         'is_home': owner_is_home,
