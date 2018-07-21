@@ -35,13 +35,15 @@ class OledWrapper:
 
         image = Image.new('1', (width, height))
 
-        font = ImageFont.load_default()
-
         draw = ImageDraw.Draw(image)
+        
+        font = ImageFont.load_default()
+        
+        text_width, text_height = draw.textsize(text, font=font)
 
         draw.rectangle((0, 0, width, height), outline=0, fill=0)
 
         draw.text((0, 0), text, font=font, fill=255)
-
+        
         disp.image(image)
         disp.display()
