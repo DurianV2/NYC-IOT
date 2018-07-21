@@ -12,9 +12,18 @@ class server_:
         self.controller = controller_()
         self.sync_time = time.time()
         self.has_background_caller = False
+        thread = threading.Thread(target=self.controller.buttonwrapper.wait_for_press, args=())
+        self.thread = thread
+        self.event = thread.Event()
+        thread.daemon = True                            # Daemonize thread
+        thread.start()                                  # Start the execution
 
     def main(self):
         while(True):
+            if(self.event.is_set()):
+                if(not self.controller.led_status_ok):
+                    self.controller.led_status_ok = True
+                    self.event.clear()
             if(not self.information_handler.is_home and not self.has_background_caller):
                 background_caller = background_sync_()
                 self.has_background_caller = True
