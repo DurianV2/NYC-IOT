@@ -3,6 +3,7 @@ from request_handler import request_handler_
 from background_sync import background_sync_
 from controller import controller_
 import threading
+import asyncio
 import time
 
 class server_:
@@ -13,9 +14,9 @@ class server_:
         self.controller = controller_()
         self.sync_time = time.time()
         self.has_background_caller = False
-        thread = threading.Thread(target=self.controller.buttonwrapper.wait_for_press, args=())
+        self.event = threading.Event()
+        thread = threading.Thread(target=self.controller.buttonwrapper.wait_for_press, args=(self.event,))
         self.thread = thread
-        self.event = thread.Event()
         thread.daemon = True                            # Daemonize thread
         thread.start()                                  # Start the execution
 
