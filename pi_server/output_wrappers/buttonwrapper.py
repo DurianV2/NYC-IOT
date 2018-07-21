@@ -9,12 +9,12 @@ class ButtonWrapper:
         GPIO.setmode(GPIO.BCM)
         self.pin = pin
 
-    def wait_for_press(self, thread):
+    def wait_for_press(self, trigger):
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
         while True:
             input_state = GPIO.input(self.pin)
             if input_state == False:
-                thread.set()
+                trigger.set()
                 break
