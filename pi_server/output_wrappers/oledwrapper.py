@@ -5,29 +5,30 @@ from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
 
-class oledwrapper:
+class OledWrapper:
     RST = 24
     DC = 23
     SPI_PORT = 0
     SPI_DEVICE = 0
 
-    def clear_screen():
-        disp = Adafruit_SSD1306.SSD1306_128_64(rst=RST)
+    def __init__(self, text):
+        self.display_text(text)
+
+    def clear_screen(self):
+        disp = Adafruit_SSD1306.SSD1306_128_64(rst=self.RST)
         
         disp.begin()
         
         disp.clear()
         disp.display()
 
-    def display_text(text):
-        disp = Adafruit_SSD1306.SSD1306_128_64(rst=RST)
+    def display_text(self, text):
+        disp = Adafruit_SSD1306.SSD1306_128_64(rst=self.RST)
 
         disp.begin()
 
         disp.clear()
         disp.display()
-
-        clear_screen()
 
         width = disp.width
         height = disp.height
