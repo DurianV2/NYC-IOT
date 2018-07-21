@@ -25,12 +25,12 @@ class server_:
         other_thread.start()
 
     def button(self, trigger):
-        if(trigger.is_set()):
-            print("button pressed")
-            # if(not self.controller.led_status_ok):
-            self.controller.led_status_ok = True
-            self.controller.ledwrapper.set_green(True)
-            trigger.clear()
+        while(not trigger.is_set()):
+        print("button pressed")
+        # if(not self.controller.led_status_ok):
+        self.controller.led_status_ok = True
+        self.controller.ledwrapper.set_green(True)
+        trigger.clear()
 
     def main(self):
         while(True):
