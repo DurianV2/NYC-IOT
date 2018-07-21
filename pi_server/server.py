@@ -24,7 +24,7 @@ class server_:
         other_thread.daemon = True
         other_thread.start()
         self.controller.ledwrapper.set_green(False)
-        self.controller.ledwrapper.set_red(False)
+        self.controller.LedWrapper.set_red(False)
 
     def button(self, trigger):
         while(not trigger.is_set()):
@@ -35,6 +35,17 @@ class server_:
         self.controller.ledwrapper.set_red(False)
         self.controller.ledwrapper.set_green(True)
         trigger.clear()
+
+    def first_warning(self, trigger):
+        while(not trigger.is_set()):
+            continue
+        print("First warning received, preparing")
+        controller.oledwrapper.display_text("Where are you?")
+        self.controller.oled_set = True
+        self.controller.ledwrapper.set_green(False)
+        self.controller.ledwrapper.set_red(False)
+        self.contoller.ledwrapper.set_red(True)
+
 
     def main(self):
         while(True):
@@ -53,9 +64,6 @@ class server_:
                         self.controller.oled_set = False
                         if(not self.controller.led_status_ok):
                             self.controller.ledwrapper.set_green(True)
-            if(self.information_handler.first_warning):
-                controller.oledwrapper.display_text("Where are you?")
-                self.controller.oled_set = True
         if(self.has_background_caller):
             background_caller.end()
 

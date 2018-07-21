@@ -42,16 +42,16 @@ class background_sync_(object):
         # self.stop = True
         # self.thread.join()
 
-example = background_sync_(sync_url = "http://honeyimhome-210903.appspot.com/sync")
-current_time = time.time()
-while True:
-    if(time.time() - current_time >= 1):
-        print("ending")
-        # stop_event.set
-        example.end()
-        break
-
-print("done")
+# example = background_sync_(sync_url = "http://honeyimhome-210903.appspot.com/sync")
+# current_time = time.time()
+# while True:
+#     if(time.time() - current_time >= 1):
+#         print("ending")
+#         # stop_event.set
+#         example.end()
+#         break
+#
+# print("done")
 # while True:
 #     print("no")
 #     time.sleep(1)
