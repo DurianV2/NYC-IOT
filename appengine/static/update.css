@@ -12,7 +12,7 @@ body {
 form {
   font-family: 'Open Sans', sans-serif;
   background: #fff;
-  margin: 100px auto;
+  margin: 100px, 100px, 0, 100px;
   width: 400px;
   display: flex;
   flex-direction: column;
@@ -78,12 +78,12 @@ input[class="btn"] {
   box-shadow: 0 3px 5px rgba(0, 0, 0, .2);
 }
 
-input[class="cancelbtn"] {
+input[class="btn2"] {
   border: none;
   color: #fff;
   width: 100%;
   align-self: flex-end;
-  background: #ff0000;
+  background: rgba(36, 150, 2, 1);
   text-align: center;
   box-shadow: 0 3px 5px rgba(0, 0, 0, .2);
 }
@@ -142,7 +142,7 @@ input[class="btn"]: hover {
 .centerDiv{
   align-self: center;
   margin-bottom: 40px;
-  font-size: 18px;
+  font-size: 14px;
   color: black;
 }
 

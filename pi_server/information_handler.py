@@ -5,7 +5,7 @@ class information_handler_:
     # this information will come from the sync get request
         self.first_warning = False
         # bool that is set when danger score reaches threshold
-        self.in_danger = False
+        self.in_danger = True
 
     def reset(self):
         self.is_home = True
