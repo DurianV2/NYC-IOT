@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <title>Submit a form</title>
+   <link rel="stylesheet" type="text/css" href="/static/style.css">
+  </head>
+  <body>
+    <div id="container">
+      <div class="pagetitle">
+        <h1>Change expected time of arrival</h1>
+      </div>
+      <div id="main">
+        <form method="post" action="{{ url_for('submitted_update') }}">
+          <label for="ETA">I'll be home before:</label>
+          <input type="time" name="ETA"><br />
+
+          <button type="button" name="notcominghome">I'm not coming home tonight.</button>
+
+          <input type="submit">
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
