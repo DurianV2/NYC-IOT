@@ -25,7 +25,7 @@ class server_:
         other_thread.daemon = True
         other_thread.start()
         warning_trigger = threading.Event()
-        first_warning_thread = threading.Thread(target=self.first_warning, args=(warning_trigger,))
+        first_warning_thread = threading.Thread(target=self.first_warning, args=(warning_trigger, ))
         first_warning_thread.daemon = True
         first_warning_thread.start()
 
@@ -63,9 +63,9 @@ class server_:
             else:
                 if(self.has_background_caller):
                     if(self.background_sync.is_home):
-                        background_caller.end()
+                        self.background_sync.end()
                         self.has_background_caller = False
-                        controller.oledwrapper.clear_screen()
+                        self.controller.oledwrapper.clear_screen()
                         self.information_handler.reset()
                         self.controller.oled_set = False
                         if(not self.controller.led_status_ok):
