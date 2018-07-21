@@ -1,21 +1,29 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <title>Submit a form</title>
-   <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <title>Leaving Home</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
   </head>
   <body>
     <div id="container">
       <div class="pagetitle">
-        <h1>Change expected time of arrival</h1>
+
       </div>
       <div id="main">
         <form method="post" action="{{ url_for('submitted_update') }}">
-          <label for="ETA">I'll be home before:</label>
-          <input type="time" name="ETA"><br />
+          <h2 class="insideTitle">Change of plans?</h2>
+          <div>
+            <div class="label-box">
+              <p>I'll be back by:</p>
+            </div>
+            <input type="time" name="ETA" required>
+          </div>
 
-          <button type="button" name="notcominghome">I'm not coming home tonight.</button>
+          <div class="centerDiv">——————   or   ——————</div>
 
-          <input type="submit">
+          <input class="btn2" value="I'm not coming back home." />
+          <input type="submit" class="btn" value="Update Values" />
         </form>
       </div>
     </div>
