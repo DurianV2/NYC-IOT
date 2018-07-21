@@ -17,7 +17,7 @@ import logging
 
 # [START imports]
 from flask import Flask, render_template, request
-from utils import send_second_level_sms, send_third_level_sms
+from app_utils import send_second_level_sms, send_third_level_sms
 # [END imports]
 
 # [START create_app]
