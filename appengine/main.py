@@ -17,7 +17,6 @@ import logging
 
 # [START imports]
 from flask import Flask, render_template, request
-from app_utils import send_second_level_sms, send_third_level_sms
 # [END imports]
 
 # [START create_app]
@@ -56,11 +55,9 @@ def submitted_leaving():
     phone5 = request.form['phone5']
     # Set up the timer and use this variables.
 
-    contacts = [phone1, phone2, phone3, phone4, phone5]
     # [END submittedleaving]
     # [START render_template]
-    send_second_level_sms(contacts)
-    return render_template('submitted_form.html');
+    return render_template('submitted_form.html')
     # [END render_template]
 
 # [START submitted]
@@ -72,13 +69,13 @@ def submitted_update():
     
     # [END submitted]
     # [START render_template]
-    return render_template('submitted_form.html');
+    return render_template('submitted_form.html')
 # [END render_template]
 
 @app.route('/sync')
 def sync():
    # Return the right json with booleans.
-    return 'JSON with two attributes, 1stcrisis and arrived';
+    return 'JSON with two attributes, 1stcrisis and arrived'
 
 @app.errorhandler(500)
 def server_error(e):
