@@ -15,7 +15,7 @@ class background_sync_(object):
         self.stop_event = stop_event
 
     def start_threads(self):
-        thread = threading.Thread(target=self.run, args=(stop_event,))
+        thread = threading.Thread(target=self.run, args=(self.stop_event,))
         self.thread = thread
         thread.daemon = True                            # Daemonize thread
         thread.start()                                  # Start the execution
