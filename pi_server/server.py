@@ -69,6 +69,7 @@ class server_:
                         self.information_handler.reset()
                         self.controller.oled_set = False
                         if(not self.controller.led_status_ok):
+                            self.controller.ledwrapper.set_red(True)
                             self.controller.ledwrapper.set_green(True)
         if(self.has_background_caller):
             background_caller.end()
