@@ -37,7 +37,7 @@ def submitted_form():
     name = request.form['name']
     email = request.form['email']
     site = request.form['site_url']
-    comments = request.form['comments']
+    comments = request.form['comments'))))))))))))]
 
     # [END submitted]
     # [START render_template]
