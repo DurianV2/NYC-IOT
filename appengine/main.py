@@ -17,6 +17,7 @@ import logging
 
 # [START imports]
 from flask import Flask, render_template, request
+from utils import send_second_level_sms, send_third_level_sms
 # [END imports]
 
 # [START create_app]
@@ -42,7 +43,7 @@ def submitted_form():
     name = request.form['name']
     email = request.form['email']
     site = request.form['site_url']
-    comments = request.form['comments'))))))))))))]
+    comments = request.form['comments']
 
 # [START submittedleaving]
 @app.route('/submittedleaving', methods=['POST'])
@@ -55,8 +56,10 @@ def submitted_leaving():
     phone5 = request.form['phone5']
     # Set up the timer and use this variables.
 
+    contacts = [phone1, phone2, phone3, phone4, phone5]
     # [END submittedleaving]
     # [START render_template]
+    send_second_level_sms(contacts)
     return render_template('submitted_form.html');
     # [END render_template]
 
