@@ -23,10 +23,10 @@ class background_sync_(object):
         while not stop_event.is_set():
             if(time.time() - start_time >= 1 and self.sync_url is not None):
                 json_ = self.request_handler.get_sync(self.sync_url)
-                # self.is_home = json_["is_home"]
-                # self.first_warning = json_["send_alert"]
-                self.is_home = True
-                self.first_warning = False
+                self.is_home = json_["is_home"]
+                self.first_warning = json_["send_alert"]
+                # self.is_home = True
+                # self.first_warning = False
                 if(self.is_home and not self.first_warning):
                     self.end()
                     return json_
