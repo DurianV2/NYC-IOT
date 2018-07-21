@@ -5,9 +5,11 @@ class request_handler_:
     def get_sync(self, get_sync_url):
         PARAMS = {}
         r = requests.get(url = get_sync_url, params = PARAMS)
-        # data = r.json()
+        data = r.json()
         # if 1st crisis is true, trigger light to change and make noise and set it to 1st stage mode
-        # object.set_first_warning
+        if(data["send_alert"]):
+            object.set_first_warning
+        return data
         # print(data)
 
     # def get_request(self):
