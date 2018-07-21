@@ -10,6 +10,7 @@ class information_handler_:
     def reset(self):
         self.is_home = True
         self.in_danger = False
+        self.first_warning = False
 
     def set_is_home(self, is_home):
         self.is_home = is_home

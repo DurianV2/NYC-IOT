@@ -5,6 +5,7 @@ from request_handler import request_handler_
 class background_sync_(object):
 
     def __init__(self, interval=1, sync_url=None):
+        self.is_home = False
         self.interval = interval
         self.stop = True
         self.request_handler = request_handler_()
@@ -20,7 +21,11 @@ class background_sync_(object):
         start_time = time.time()
         while not stop_event.is_set():
             if(time.time() - start_time >= 1 and self.sync_url is not None):
-                self.request_handler.get_sync(self.sync_url)
+                json = self.request_handler.get_sync(self.sync_url)
+                                # if(!json.is_home or !json.first_trigger):
+                                #     self.is_home = True
+                                #     self.end()
+                                #     return json
                 start_time = time.time()
             # else:
             #     # print("something is none")
