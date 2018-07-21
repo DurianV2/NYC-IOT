@@ -19,7 +19,7 @@ class server_:
         self.thread = thread
         thread.daemon = True                            # Daemonize thread
         thread.start()                                  # Start the execution
-        other_thread = threading.Thread(target=button, args=())
+        other_thread = threading.Thread(target=self.button, args=())
         self.other_thread = other_thread
         other_thread.daemon = True
         other_thread.start()
