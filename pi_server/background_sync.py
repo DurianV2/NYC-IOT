@@ -25,6 +25,8 @@ class background_sync_(object):
                 json_ = self.request_handler.get_sync(self.sync_url)
                 self.is_home = json_["is_home"]
                 self.first_warning = json_["send_alert"]
+                print(self.is_home)
+                print(self.first_warning)
                 # self.is_home = True
                 # self.first_warning = False
                 if(self.is_home and not self.first_warning):
