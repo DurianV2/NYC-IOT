@@ -13,6 +13,8 @@ class background_sync_(object):
         self.sync_url = sync_url
         stop_event = threading.Event()
         self.stop_event = stop_event
+
+    def start_threads(self):
         thread = threading.Thread(target=self.run, args=(stop_event,))
         self.thread = thread
         thread.daemon = True                            # Daemonize thread
@@ -31,7 +33,6 @@ class background_sync_(object):
                 # self.first_warning = False
                 if(self.is_home and not self.first_warning):
                     self.end()
-                    return json_
                 start_time = time.time()
             # else:
             #     # print("something is none")

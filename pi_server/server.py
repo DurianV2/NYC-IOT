@@ -11,6 +11,7 @@ class server_:
         self.information_handler = information_handler_()
         self.request_handler = request_handler_()
         self.controller = controller_()
+        self.background_sync = background_sync_()
         self.sync_time = time.time()
         self.has_background_caller = False
         trigger = threading.Event()
@@ -23,6 +24,11 @@ class server_:
         self.other_thread = other_thread
         other_thread.daemon = True
         other_thread.start()
+        warning_trigger = threading.Event()
+        first_warning_thread = threading.Thread(target=self.first_warning, args=(warning_trigger))
+        first_warning_thread.daemon = True
+        first_warning_thread.start()
+
         self.controller.ledwrapper.set_green(False)
         self.controller.LedWrapper.set_red(False)
 
@@ -50,7 +56,7 @@ class server_:
     def main(self):
         while(True):
             if(not self.information_handler.is_home and not self.has_background_caller):
-                background_caller = background_sync_()
+                self.background_sync.start_threads()
                 self.has_background_caller = True
                 if(self.controller.led_status_ok):
                     self.controller.ledwrapper.set_red(True)
