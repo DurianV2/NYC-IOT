@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <title>Leaving Home</title>
+   <link rel="stylesheet" type="text/css" href="/static/style.css">
+  </head>
+  <body>
+    <div id="container">
+      <div class="pagetitle">
+        <h1>Going out?</h1>
+      </div>
+      <div id="main">
+        <form method="post" action="{{ url_for('submitted_update') }}">
+          <label for="ETA">I'll be home before:</label>
+          <input type="time" name="ETA"><br />
+
+          <label for="phone1">Emergency Contact 1:</label>
+          <input type="tel" name="phone1"><br />
+
+          <label for="phone2">Emergency Contact 2:</label>
+          <input type="tel" name="phone2"><br />
+
+          <label for="phone3">Emergency Contact 3:</label>
+          <input type="tel" name="phone3"><br />
+
+          <label for="phone4">Emergency Contact 4:</label>
+          <input type="tel" name="phone4"><br />
+
+          <label for="phone5">Emergency Contact 5:</label>
+          <input type="tel" name="phone5"><br />
+
+          <input type="submit">
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

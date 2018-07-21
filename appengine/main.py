@@ -24,13 +24,19 @@ app = Flask(__name__)
 # [END create_app]
 
 
-# [START form]
-@app.route('/form')
-def form():
-    return render_template('form.html')
-# [END form]
+# [START leaving]
+@app.route('/leaving')
+def leavingform():
+    return render_template('leavingform.html')
+# [END leaving]
 
+# [START update]
+@app.route('/update')
+def updateform():
+    return render_template('updateform.html')
+# [END update]
 
+<<<<<<< HEAD
 # [START submitted]
 @app.route('/submitted', methods=['POST'])
 def submitted_form():
@@ -38,17 +44,41 @@ def submitted_form():
     email = request.form['email']
     site = request.form['site_url']
     comments = request.form['comments'))))))))))))]
+=======
+>>>>>>> 5426c398f14ea09275dae7b0e91697849dc4f73d
 
-    # [END submitted]
+# [START submittedleaving]
+@app.route('/submittedleaving', methods=['POST'])
+def submitted_leaving():
+    ETA = request.form['ETA']
+    phone1 = request.form['phone1']
+    phone2 = request.form['phone2']
+    phone3 = request.form['phone3']
+    phone4 = request.form['phone4']
+    phone5 = request.form['phone5']
+    # Set up the timer and use this variables.
+
+    # [END submittedleaving]
     # [START render_template]
-    return render_template(
-        'submitted_form.html',
-        name=name,
-        email=email,
-        site=site,
-        comments=comments)
+    return render_template('submitted_form.html');
     # [END render_template]
 
+# [START submitted]
+@app.route('/submittedupdate', methods=['POST'])
+def submitted_update():
+    ETA = request.form['ETA']
+    # Update the ETA variable.
+    # Listen for the notcominghome button.
+    
+    # [END submitted]
+    # [START render_template]
+    return render_template('submitted_form.html');
+# [END render_template]
+
+@app.route('/sync')
+def sync():
+   # Return the right json with booleans.
+    return 'JSON with two attributes, 1stcrisis and arrived';
 
 @app.errorhandler(500)
 def server_error(e):
