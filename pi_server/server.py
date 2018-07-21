@@ -18,7 +18,7 @@ class server_:
             if(not self.information_handler.is_home and not self.has_background_caller):
                 background_caller = background_sync_()
                 self.has_background_caller = True
-                if(controller.led_status_ok):
+                if(self.controller.led_status_ok):
                     self.controller.ledwrapper.set_red(True)
             else:
                 if(self.has_background_caller):
